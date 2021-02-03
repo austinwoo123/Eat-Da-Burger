@@ -15,7 +15,7 @@
 
 
 ## ScreenShot
-
+![Alt](https://raw.githubusercontent.com/austinwoo123/Eat-Da-Burger/main/public/assets/img/burger.png)
 ## Installation
 1. Clone repo 
 2. Install the required NPM packages
