@@ -1,7 +1,7 @@
 # Eat-Da-Burger
 
 ## Description
-
+My task was to create a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM. The user is able to add a burger and eat the burger as well as "save the burger for later" which will delete the burger from the page.
 ## Table of Contents
 1. [Description](#description)
 2. [ScreenShot](#ScreenShot)
@@ -55,6 +55,35 @@
 </ul>
 ```
 This code shows how I used express handlebars to iterate through the burgers table and display the name of the burger in an unordered list with buttons for "eat" and "save for later." The eat button will move the burger to the "devoured" list and the "save for later" button will delete the burger from the page. 
+
+```
+router.put("/api/burgers/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+    burgerCon.updateOne({ devoured: req.body.devoured }, condition, function (result) {
+        console.log(result)
+        if (result.affectedRows === 0) {
+            // If no rows were changed, then the ID must not exist, so 404.
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
+    });
+});
+router.delete("/api/burgers/:id", function (req, res) {
+    var condition = "id = " + req.params.id;
+    console.log("condition", condition);
+
+    burgerCon.deleteOne(condition, function (result) {
+        if (result.affectedRows === 0) {
+            // If no rows were changed, then the ID must not exist, so 404.
+            return res.status(404).end();
+        } else {
+            res.status(200).end();
+        }
+    });
+});
+```
+This code shows how I created the update and delete routes for my burgers controller.js file. 
 
 ## Built with
 - Node
