@@ -15,7 +15,7 @@ router.get("/", function (req, res) {
 });
 
 router.post("/api/burgers", function (req, res) {
-    burger.create([
+    burgerCon.insertOne([
         "burger_name", "devoured"
     ], [
         req.body.burger_name, req.body.devoured
@@ -24,7 +24,7 @@ router.post("/api/burgers", function (req, res) {
     });
 });
 
-router.put("/api/burger/:id", function (req, res) {
+router.put("/api/burgers/:id", function (req, res) {
     burger.updateOne(["devoured"], [req.body.devoured], condition, function (result) {
         res.json(result);
     });
