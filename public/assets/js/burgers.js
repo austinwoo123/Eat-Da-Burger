@@ -11,7 +11,7 @@ $(function () {
             data: burgerState
         }).then(
             function () {
-                console.log("Finished eating burger", newBurger);
+                console.log("Finished eating burger");
                 // Reload the page to get the updated list
                 location.reload();
             }
@@ -24,7 +24,7 @@ $(function () {
             event.preventDefault();
 
             var newBurger = {
-                burger_name: $("#newburger").val().trim(),
+                burger_name: $("#addBurger").val().trim(),
                 devoured: 0
             };
 
@@ -40,5 +40,17 @@ $(function () {
         });
 
     })
+    $(".save-burger").on("click", function (event) {
+        event.preventDefault();
+
+        var id = $(this).data("id");
+
+        // Send the DELETE request.
+        $.ajax({
+            type: "DELETE",
+            url: "/api/burgers/" + id
+        }).then(location.reload());
+    });
 
 })
+
