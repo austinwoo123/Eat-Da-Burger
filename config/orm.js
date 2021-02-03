@@ -1,5 +1,5 @@
 var connection = require("../config/connection.js");
-
+var tableInput = "burgers";
 
 var orm = {
     selectAll: function (tableInput, cb) {
@@ -11,6 +11,33 @@ var orm = {
             cb(result);
         });
     },
+
+    insertOne: (tableName, cols, vals, callback) => {
+
+    },
+
+
+
+    updateOne: (tableName, cols, vals, condition, callback) => {
+
+
+
+
+
+    },
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
 
 module.exports = orm;

@@ -5,7 +5,7 @@ var router = express.Router();
 var burgerCon = require("../models/burger.js");
 
 router.get("/", function (req, res) {
-    burgerCon.all(function (data) {
+    burgerCon.selectAll(function (data) {
         var hbsObject = {
             burgers: data
         };
@@ -14,7 +14,21 @@ router.get("/", function (req, res) {
     });
 });
 
+router.post("/api/burgers", function (req, res) {
+    burger.create([
+        "burger_name", "devoured"
+    ], [
+        req.body.burger_name, req.body.devoured
+    ], function (result) {
+        res.json({ id: result.insertId });
+    });
+});
 
+router.put("/api/burger/:id", function (req, res) {
+    burger.updateOne(["devoured"], [req.body.devoured], condition, function (result) {
+        res.json(result);
+    });
+});
 
 
 
