@@ -49,8 +49,8 @@ var orm = {
         });
     },
 
-    insertOne: (tableName, cols, vals, cb) => {
-        var queryString = "INSERT INTO " + tableName;
+    insertOne: (tableInput, cols, vals, cb) => {
+        var queryString = "INSERT INTO " + tableInput;
 
         queryString += " (";
         queryString += cols.toString();
@@ -68,22 +68,42 @@ var orm = {
             cb(result);
         });
     },
+    update: function (tableInput, objColVals, condition, cb) {
+        var queryString = "UPDATE " + tableInput;
 
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
 
+        console.log(queryString);
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
 
+            cb(result);
+        });
+    },
+    delete: function (table, condition, cb) {
+        var queryString = "DELETE FROM " + table;
+        queryString += " WHERE ";
+        queryString += condition;
 
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
 
-    //     updateOne: (tableName, cols, vals, condition, callback) => {
-
-
-
-
-
-    // },
-
-
-
+            cb(result);
+        });
+    },
 }
+
+
+
+
+
 
 
 
