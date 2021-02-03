@@ -6,8 +6,7 @@
     <li>
         {{burger_name}}
 
-        <button class="save-burger" data-id="{{id}}">{{#if devoured}}EAT!{{else}}Save For Later!{{/if}}
-        </button>
+        {{!-- <button class="save-burger" data-id="{{this.id}}">Save for later!</button> --}}
 
         <button class="eat-burger" data-id="{{this.id}}">Eat!</button>
     </li>
@@ -22,7 +21,11 @@
     {{#if devoured}}
     <li>
         {{burger_name}}
-
+        <button class="save-burger" data-id="{{this.id}}">Save for later!</button>
+        {{!-- <button class="save-burger" data-id="{{id}}">{{#if devoured}}Save For later!{{else}}Eat!{{/if}}
+        </button> --}}
+        {{!-- <button class="save-burger" data-id="{{id}}">{{#if devoured}}EAT!{{else}}Save For Later!{{/if}}
+        </button> --}}
     </li>
     {{/if}}
     {{/each}}
